@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#202a26">
+  <meta name="description" content="Command a combined-arms task force in an original turn-based Gulf War strategy game.">
+  <title>Modern War Tactics — Desert Storm</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a href="./" class="brand" aria-label="Modern War Tactics home"><span class="brand-mark">M<span>W</span></span><span>MODERN WAR<span class="brand-sub">TACTICS & STRATEGY</span></span></a>
+    <nav aria-label="Main navigation"><button id="campaigns-btn" class="nav-active">Campaigns</button><button id="manual-btn">Field manual <span>↗</span></button></nav>
+    <div class="commander"><span class="online-dot"></span> COALITION COMMAND <span class="avatar">★</span></div>
+  </header>
+  <main class="app-shell">
+    <aside class="campaign-panel">
+      <div class="overline">THEATER OF OPERATIONS <span>01 / 05</span></div>
+      <div class="campaign-emblem"><svg viewBox="0 0 80 80" aria-hidden="true"><path d="M40 6 66 18v28L40 72 14 46V18Z"/><path d="m40 18 5 13 14 1-11 9 4 14-12-8-12 8 4-14-11-9 14-1Z"/></svg></div>
+      <p class="eyebrow">1990 — 1991</p>
+      <h1>The Gulf War</h1>
+      <p class="campaign-description">A new era of warfare.<br>A decisive moment in history.</p>
+      <div class="campaign-progress"><span>CAMPAIGN PROGRESS</span><b id="progress-text">0 / 3</b><div><i id="progress-bar"></i></div></div>
+      <div class="section-label">OPERATIONS</div>
+      <div id="missions" class="missions"></div>
+      <div class="coalition-card"><div class="section-label">YOUR ALLEGIANCE</div><div class="allegiance"><span class="coalition-symbol">✦</span><div><strong>Coalition forces</strong><small>United States · United Kingdom · Allies</small></div></div><div class="flags"><span class="flag us" title="United States"></span><span class="flag uk" title="United Kingdom">✕</span><span class="flag sa" title="Saudi Arabia">⚔</span><span class="flag kw" title="Kuwait"></span><span class="nation-count">+ 31 nations</span></div></div>
+      <button id="briefing-btn" class="briefing-link">▤ <span>Operation briefing</span> ↗</button>
+      <div class="sidebar-bottom"><span class="online-dot"></span> <span id="save-status">LOCAL CAMPAIGN · AUTOSAVE ON</span></div>
+    </aside>
+    <section class="battlefield" aria-label="Battlefield">
+      <div class="battle-heading"><div><div class="eyebrow">GULF WAR CAMPAIGN <span>/</span> OPERATION <span id="mission-number">01</span></div><h2 id="mission-title">The Left Hook</h2><p id="mission-subtitle">Southern Iraq & Kuwait · 24 February 1991</p></div><button class="difficulty" id="difficulty-btn"><span>◈</span> STANDARD <span>ⓘ</span></button></div>
+      <div class="map-toolbar"><div class="phase"><span class="online-dot"></span><strong id="phase-label">COALITION TURN</strong><span class="toolbar-separator"></span><span>TURN <b id="turn-number">01</b><span id="turn-limit"> / 18</span></span></div><div class="map-settings"><button id="grid-btn" class="tool active" aria-label="Toggle hex grid" aria-pressed="true">⬡ <span>Grid</span></button><button id="labels-btn" class="tool active" aria-label="Toggle map labels" aria-pressed="true">Aa <span>Labels</span></button></div></div>
+      <div class="map-stage" id="map-stage"><svg id="battle-map" viewBox="0 0 1400 900" role="group" aria-label="Interactive hex battlefield. Select a Coalition unit, then a blue hex to move or a red enemy to attack."></svg><div class="map-top-caption"><span class="map-live-dot"></span> 26 × 18 HEX THEATER <span>29° N / 47° E</span></div><div class="map-compass" aria-hidden="true"><b>N</b><svg viewBox="0 0 30 40"><path d="m15 3 9 30-9-6-9 6Z"/><path d="M15 3v24"/></svg></div><div class="map-legend"><span><i class="legend-coalition"></i> Coalition</span><span><i class="legend-iraqi"></i> Iraqi forces</span><span><i class="legend-objective"></i> Objective</span></div><div class="zoom-controls"><button id="zoom-in" aria-label="Zoom in">+</button><button id="zoom-out" aria-label="Zoom out">−</button><button id="zoom-fit" aria-label="Reset map view">⌖</button></div><div class="map-scale">0 <span></span> 50 km</div><div id="terrain-readout" class="terrain-readout" aria-live="off"><strong>Expanded theater · 468 hexes</strong><span>Hover over terrain to inspect movement and cover.</span></div><div id="map-toast" class="map-toast" role="status"></div></div>
+      <div class="selection-panel" id="selection-panel"></div>
+      <div class="battle-footer"><span><kbd>CLICK</kbd> Select & command <span class="footer-dot">·</span> <kbd>ESC</kbd> Deselect <span class="footer-dot">·</span> <kbd>E</kbd> End turn</span><span>HISTORICALLY INSPIRED · TACTICAL SCALE</span></div>
+    </section>
+    <aside class="command-panel">
+      <div class="command-heading"><span class="section-label">COMMAND CENTER</span><span class="radio-waves">◉</span></div>
+      <div class="resource-row"><div><span>▧</span><small>SUPPLY</small><b id="supply-value">180</b></div><div><span>⚑</span><small>OBJECTIVES</small><b id="objective-value">0<span>/3</span></b></div></div>
+      <section class="objectives-section"><div class="panel-title"><h3>Mission objectives</h3><span>PRIMARY</span></div><p id="objective-description">Secure the western flank.</p><div id="objectives"></div><div class="turn-warning">◷ <span>Complete within <b id="deadline">22 turns</b></span></div></section>
+      <section class="forces-section"><div class="panel-title"><h3>Your forces</h3><span id="force-count">11 UNITS</span></div><div class="force-tabs" role="tablist" aria-label="Unit branch"><button id="ground-tab" role="tab" aria-selected="true" class="active">Ground <span id="ground-count">9</span></button><button id="air-tab" role="tab" aria-selected="false">Air force <span id="air-count">2</span></button></div><div id="unit-roster" class="unit-roster"></div><button id="reinforce-btn" class="reinforce-btn">＋ Request reinforcements <span>from 60 ▧</span></button></section>
+      <section class="activity-section"><div class="panel-title"><h3>Situation report</h3><span class="live-label">LIVE</span></div><div id="activity" aria-live="polite"></div></section>
+      <div class="end-turn-area"><div><span id="ready-count">11 units awaiting orders</span><span>↴</span></div><button id="end-turn">END TURN <span>→</span></button><small id="income-label">+35 supply next turn</small></div>
+    </aside>
+  </main>
+  <dialog id="modal"><button id="close-modal" class="close-modal" aria-label="Close dialog">×</button><div id="modal-content"></div></dialog>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
